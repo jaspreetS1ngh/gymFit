@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
 
 
 
@@ -50,4 +51,20 @@ def SignUp(request):
     return render(request,"signup.html")
 
 def handleLogin(request):
+    if request.method=='POST':
+        username=request.POST.get('usernumber')
+       
+        pass1= request.POST.get('pass1')
+        
+        myuser= authenticate(username=username,password=pass1)
+
+        if myuser is not None:
+            login(request,myuser)
+            messages.success(request,'Logged in')
+            return redirect('/')
+        else:
+            messages.error(request,'user not exits')
+            return redirect('/HandleLogin')
+            
+        
     return render(request,"handleLogin.html")
