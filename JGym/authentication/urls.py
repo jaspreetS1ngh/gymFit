@@ -7,4 +7,5 @@ urlpatterns = [
     path('SignUp', views.SignUp, name="SignUp"),
     path('HandleLogin', views.handleLogin, name="handleLogin"),
     path('logout', views.handlelogout, name="handlelogout"),
+    path('contact',views.contact, name="contact"),
 ]
