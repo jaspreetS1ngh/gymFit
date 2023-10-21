@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from authentication.models import Contact
+from authentication.models import Contact,MembershipPlan,Trainer,Enrollment
 
 
 
@@ -69,6 +69,7 @@ def handleLogin(request):
             
         
     return render(request,"handleLogin.html")
+
 def handlelogout(request):
     logout(request)
     messages.success(request,"user loged out")
@@ -86,3 +87,9 @@ def contact(request):
         return redirect('/contact')
         
     return render(request,"contact.html")
+
+def enroll(request):
+    membership=MembershipPlan.objects.all()
+    trainer=Trainer.objects.all()
+    context={"Membership":membership,"Trainer":trainer}
+    return render(request,"enroll.html",context)
