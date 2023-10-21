@@ -89,7 +89,36 @@ def contact(request):
     return render(request,"contact.html")
 
 def enroll(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Please Login and Try Again")
+        return redirect('/HandleLogin')
+    
     membership=MembershipPlan.objects.all()
     trainer=Trainer.objects.all()
     context={"Membership":membership,"Trainer":trainer}
+    if request.method=="POST":
+        FullName=request.POST.get('FullName')
+        email=request.POST.get('email')
+        gender=request.POST.get('gender')
+        PhoneNumber=request.POST.get('PhoneNumber')
+        DOB=request.POST.get('DOB')
+        member=request.POST.get('member')
+        trainer=request.POST.get('trainer')
+        reference=request.POST.get('reference')
+        address=request.POST.get('address')
+        query=Enrollment(FullName=FullName,Email=email,Gender=gender,PhoneNumber=PhoneNumber,DOB=DOB,SelectMembershipplan=member,SelectTrainer=trainer,Reference=reference,Address=address)
+        query.save()
+        messages.success(request,"Thanks For Enrollment")
+        return redirect('/join')
+
     return render(request,"enroll.html",context)
+
+def viewprofile(request):
+    if not request.user.is_authenticated:
+        messages.warning(request,"Please Login and Try Again")
+        return redirect('/HandleLogin')
+    number=request.user
+    posts=Enrollment.objects.filter(PhoneNumber=number)
+    context={"posts":posts}
+
+    return render(request,"profile.html",context)
