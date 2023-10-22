@@ -10,5 +10,6 @@ urlpatterns = [
     path('contact',views.contact, name="contact"),
     path('join',views.enroll,name="enroll"),
     path('viewprofile',views.viewprofile,name="viewprofile"),
+    path('gallery',views.gallery,name="gallery"),
 
 ]

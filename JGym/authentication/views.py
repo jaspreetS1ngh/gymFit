@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from authentication.models import Contact,MembershipPlan,Trainer,Enrollment
+from authentication.models import Contact,MembershipPlan,Trainer,Enrollment,Gallery
 
 
 
@@ -124,3 +124,7 @@ def viewprofile(request):
     return render(request,"profile.html",context)
 
 
+def gallery(request):
+    posts= Gallery.objects.all()
+    context={"posts":posts}
+    return render(request,"gallery.html",context)
