@@ -45,6 +45,15 @@ class MembershipPlan(models.Model):
     def __int__(self):
         return self.id
 
+class Gallery(models.Model):
+    title= models.CharField(max_length=25)
+    timeStamp=models.DateTimeField(auto_now_add=True,blank=True)
+    img= models.ImageField(upload_to='gallery')
+
+    def __int__(self):
+        return self.id
+
+
 
 
 

@@ -122,3 +122,5 @@ def viewprofile(request):
     context={"posts":posts}
 
     return render(request,"profile.html",context)
+
+
