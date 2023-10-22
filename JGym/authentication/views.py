@@ -119,7 +119,8 @@ def viewprofile(request):
         return redirect('/HandleLogin')
     number=request.user
     posts=Enrollment.objects.filter(PhoneNumber=number)
-    context={"posts":posts}
+    attendance=Attendance.objects.filter(phonenumber=number)
+    context={"posts":posts,"attendance":attendance}
 
     return render(request,"profile.html",context)
 

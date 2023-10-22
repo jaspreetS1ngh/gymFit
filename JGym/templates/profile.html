@@ -62,7 +62,21 @@ Profile
         </thead>
         <tbody>
 
+          {% for attend in attendance %}
+          <tr>
+            
+            <td>{{attend.Selectdate}}</td>
+            <td>{{attend.Login}}</td>
+            <td>{{attend.Logout}}</td>
+            <td>{{attend.SelectWorkout}}</td>
+            <td>{{attend.TrainedBy}}</td>
+            
+           
          
+            
+           
+          </tr>
+          {% endfor %}
         
         </tbody>
       </table>
